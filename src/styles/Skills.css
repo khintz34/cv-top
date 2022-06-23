@@ -1,0 +1,10 @@
+#main-Skills {
+  border-bottom: 1px solid black;
+  width: calc(100% - 10px);
+  margin-top: 15px;
+  height: 25vh;
+}
+
+#header-Skills {
+  margin-bottom: 5px;
+}

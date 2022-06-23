@@ -1,0 +1,9 @@
+#main-Education {
+  border-bottom: 1px solid black;
+  width: calc(100% - 10px);
+  margin-top: 10px;
+}
+
+#header-Education {
+  margin-bottom: 5px;
+}

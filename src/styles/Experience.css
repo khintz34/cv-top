@@ -1,0 +1,40 @@
+#main-Exp {
+  width: calc(100% - 10px);
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.seperateLines {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#jobTitle,
+#years {
+  text-align: left;
+  margin-left: 5px;
+}
+
+#companyName {
+  margin-left: auto;
+  padding-right: 5px;
+}
+
+#location {
+  padding-right: 5px;
+  margin-left: auto;
+}
+
+li {
+  margin-top: 5px;
+}
+
+.expWrap {
+  overflow-wrap: break-word;
+}
+
+#workExp {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
