@@ -119,8 +119,18 @@ class App extends Component {
         },
       });
     }
-  };
 
+    // Need Davids Help
+    const webDiv = document.querySelector("#webDiv");
+    console.log(this.state.contact.website);
+
+    if (webDiv.textContent === "" || webDiv.textContent === "Website") {
+      webDiv.classList.add("hide");
+    } else {
+      webDiv.classList.remove("hide");
+    }
+  };
+  // Need Davids Help
   skillChange(e) {
     const skillArray = [
       "fSkill1",
@@ -136,12 +146,27 @@ class App extends Component {
     let indexNum = skillArray.indexOf(e.target.id);
     let arrayItem = skillArray[indexNum];
 
-    this.setState({
-      skills: {
-        ...this.state.skills,
-        [arrayItem]: e.target.value,
+    this.setState(
+      {
+        skills: {
+          ...this.state.skills,
+          [arrayItem]: e.target.value,
+        },
       },
-    });
+      this.checkCounts(arrayItem)
+    );
+  }
+  // Need Davids Help
+  checkCounts(item) {
+    let skillItem = document.querySelector(`#${item}-Info`);
+    console.log(skillItem.textContent);
+
+    if (skillItem.textContent !== "") {
+      skillItem.classList.add("skillShow");
+    } else {
+      skillItem.classList.remove("skillShow");
+      console.log("HERE");
+    }
   }
 
   educationChange(e) {
@@ -164,8 +189,6 @@ class App extends Component {
     eduType.textContent = type.value;
     eduInst.textContent = institute.value;
     eduYears.textContent = years.value;
-
-    console.log(this.state.education);
   }
 
   experienceChange(e) {

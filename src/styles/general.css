@@ -31,7 +31,7 @@
 
 #main-General {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.75fr;
+  grid-template-columns: 1fr 1fr 0.65fr;
   grid-template-rows: 75px 100px;
   border-bottom: 3px solid rgba(64, 64, 112, 0.763);
 }

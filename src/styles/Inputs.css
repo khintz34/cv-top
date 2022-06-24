@@ -40,4 +40,5 @@ input {
 .skillInput {
   margin-top: 10px;
   width: 50%;
+  border: 1px solid black;
 }

@@ -23,15 +23,6 @@ class GeneralInputs extends Component {
           <br />
 
           <input
-            type="text"
-            id="fjobTitle"
-            name="fjobTitle"
-            className="inputField"
-            placeholder="Job Title"
-          />
-          <br />
-
-          <input
             type="email"
             id="fEmail"
             name="fEmail"
