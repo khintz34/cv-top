@@ -12,7 +12,12 @@ class GeneralInputs extends Component {
     return (
       <div id="main-Personal-Inputs" className="outline">
         <h2>General Information</h2>
-        <form action="" id="fPersonal" onChange={this.props.handleChange}>
+        <form
+          action=""
+          id="fPersonal"
+          onChange={this.props.handleChange}
+          className="centerAll"
+        >
           <input
             type="text"
             id="fName"

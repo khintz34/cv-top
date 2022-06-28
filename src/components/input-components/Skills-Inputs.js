@@ -9,9 +9,14 @@ class SkillsInputs extends Component {
   render() {
     // const { task, tasks } = this.state;
     return (
-      <div id="main-Education-Inputs" className="outline">
+      <div id="main-Skills-Inputs" className="outline">
         <h2>Relevant Skills / Attributes</h2>
-        <form action="" id="fSkills" onChange={this.props.skillChange}>
+        <form
+          action=""
+          id="fSkills"
+          onChange={this.props.skillChange}
+          className="centerAll"
+        >
           <input
             type="text"
             id="fSkill1"

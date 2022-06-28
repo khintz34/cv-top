@@ -12,8 +12,6 @@ class Work extends Component {
       <div id="main-Work">
         <h2 id="workExp">Work Experience</h2>
         <Experience {...this.props} />
-        {/* <Experience />
-        <Experience /> */}
       </div>
     );
   }

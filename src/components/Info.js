@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/Info.css";
-// import Contact from "./Contact-Info";
+import uniqid from "uniqid";
 import Education from "./Education-Info";
 import Skills from "./Skills-Info";
 
@@ -10,11 +10,22 @@ class Info extends Component {
   //   }
 
   render() {
+    let test =
+      this.props && this.props.education.length > 0 ? (
+        this.props.education.map((formData) => (
+          <Education data={formData} {...this.props} key={uniqid()} />
+        ))
+      ) : (
+        <span>ERROR - INFO.JS</span>
+      );
+
     return (
       <div id="main-Info">
-        {/* <Contact {...this.props} /> */}
         <Skills {...this.props} />
-        <Education {...this.props} />
+        {/* {this.props.education.map((formData) => (
+          <Education data={formData} {...this.props} key={uniqid()} />
+        ))} */}
+        {test}
       </div>
     );
   }

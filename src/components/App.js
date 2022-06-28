@@ -4,6 +4,7 @@ import General from "./general.js";
 import Work from "./Work";
 import Info from "./Info";
 import Inputs from "./input-components/Inputs";
+// import Experience from "./Experience";
 
 class App extends Component {
   constructor(props) {
@@ -33,25 +34,73 @@ class App extends Component {
         fSkill7: "",
         fSkill8: "",
       },
-      education: {
-        type: "Type",
-        institute: "Institute",
-        years: "Years",
-      },
+      // education: {
+      //   type: "",
+      //   institute: "",
+      //   years: "",
+      // },
       experience: {
-        jobTitle: "Job Title",
-        company: "Company",
-        years: "Years",
-        location: "Location",
-        ex1: "Example 1",
-        ex2: "Example 2",
-        ex3: "Example 3",
+        jobTitle: "",
+        company: "",
+        years: "",
+        location: "",
+        ex1: "",
+        ex2: "",
+        ex3: "",
       },
+      education: [
+        {
+          main: {
+            formIDs: {
+              formID: "fEducation",
+              type: "fType",
+              institute: "fInstitute",
+              years: "fYears",
+            },
+            infoIDs: {
+              inst: "eduInst",
+              type: "eduType",
+              years: "eduYears",
+            },
+            data: {
+              type: "",
+              institute: "",
+              years: "",
+            },
+            num: 0,
+          },
+        },
+      ],
+      expForms: [
+        {
+          form: {
+            formID: "fExperience",
+            title: "fTitle",
+            company: "fCompany",
+            yearsExp: "fYearsExp",
+            location: "fLocation",
+            ex1: "fExample1",
+            ex2: "fExample2",
+            ex3: "fExample3",
+          },
+        },
+      ],
+      // educationInfo: [
+      //   {
+      //     main: {
+      //       inst: "eduInst",
+      //       type: "eduType",
+      //       years: "eduYears",
+      //     },
+      //   },
+      // ],
     };
     this.handleChange = this.handleChange.bind(this);
     this.skillChange = this.skillChange.bind(this);
     this.educationChange = this.educationChange.bind(this);
     this.experienceChange = this.experienceChange.bind(this);
+    this.addEducation = this.addEducation.bind(this);
+    this.addExperience = this.addExperience.bind(this);
   }
 
   handleChange = (e) => {
@@ -112,25 +161,30 @@ class App extends Component {
         },
       });
     } else if (e.target.id === "fWeb") {
-      this.setState({
-        contact: {
-          ...this.state.contact,
-          website: e.target.value,
+      this.setState(
+        {
+          contact: {
+            ...this.state.contact,
+            website: e.target.value,
+          },
         },
-      });
+        () => {
+          this.showWeb();
+        }
+      );
     }
+  };
 
-    // Need Davids Help
+  showWeb() {
     const webDiv = document.querySelector("#webDiv");
-    console.log(this.state.contact.website);
 
     if (webDiv.textContent === "" || webDiv.textContent === "Website") {
       webDiv.classList.add("hide");
     } else {
       webDiv.classList.remove("hide");
     }
-  };
-  // Need Davids Help
+  }
+
   skillChange(e) {
     const skillArray = [
       "fSkill1",
@@ -153,81 +207,139 @@ class App extends Component {
           [arrayItem]: e.target.value,
         },
       },
-      this.checkCounts(arrayItem)
+      () => {
+        this.checkCounts(arrayItem);
+      }
     );
   }
-  // Need Davids Help
+
   checkCounts(item) {
     let skillItem = document.querySelector(`#${item}-Info`);
-    console.log(skillItem.textContent);
 
     if (skillItem.textContent !== "") {
       skillItem.classList.add("skillShow");
     } else {
       skillItem.classList.remove("skillShow");
-      console.log("HERE");
     }
   }
 
   educationChange(e) {
     e.preventDefault();
-    const type = document.querySelector("#fType");
-    const institute = document.querySelector("#fInstitute");
-    const years = document.querySelector("#fYears");
-    const eduType = document.querySelector("#eduType");
-    const eduInst = document.querySelector("#eduInst");
-    const eduYears = document.querySelector("#eduYears");
+    let trackingNum = e.target.form.getAttribute("data-num");
+    console.log(trackingNum);
+    console.log(this.state.education[trackingNum]);
 
-    this.setState({
-      education: {
-        type: type.value,
-        institute: institute.value,
-        years: years.value,
+    let typeValue = e.target.form.firstChild;
+    let instValue = typeValue.nextSibling.nextSibling;
+    let yearsValue = instValue.nextSibling.nextSibling;
+
+    // let test = this.state.education.filter((data) => data.main.num === 0);
+    // console.log(`this is test: ${test}`);
+
+    this.setState(
+      {
+        education: [
+          // ...this.state.education,
+          {
+            main: {
+              ...this.state.education.main,
+              formIDs: {
+                formID: "fEducation",
+                type: "fType",
+                institute: "fInstitute",
+                years: "fYears",
+              },
+              infoIDs: {
+                inst: "eduInst",
+                type: "eduType",
+                years: "eduYears",
+              },
+              data: {
+                type: typeValue.value,
+                institute: instValue.value,
+                years: yearsValue.value,
+              },
+            },
+          },
+        ],
       },
-    });
+      console.log(this.state.education)
+    );
+  }
 
-    eduType.textContent = type.value;
-    eduInst.textContent = institute.value;
-    eduYears.textContent = years.value;
+  addEducation(e) {
+    let num = this.state.education.length;
+    this.setState({
+      education: [
+        ...this.state.education,
+        {
+          main: {
+            ...this.state.education.main,
+            formIDs: {
+              formID: "fEducation" + num,
+              type: "fType" + num,
+              institute: "fInstitute" + num,
+              years: "fYears" + num,
+            },
+            infoIDs: {
+              inst: "eduInst" + num,
+              type: "eduType" + num,
+              years: "eduYears" + num,
+            },
+            data: {
+              type: "",
+              institute: "",
+              years: "",
+            },
+            num: num,
+          },
+        },
+      ],
+    });
+  }
+
+  addExperience(e) {
+    let num = this.state.expForms.length;
+    this.setState({
+      expForms: [
+        ...this.state.eduForms,
+        {
+          form: {
+            formID: "fExperience" + num,
+            title: "fTitle" + num,
+            company: "fCompany" + num,
+            yearsExp: "fYearsExp" + num,
+            location: "fLocation" + num,
+            ex1: "fExample1" + num,
+            ex2: "fExample2" + num,
+            ex3: "fExample3" + num,
+          },
+        },
+      ],
+    });
   }
 
   experienceChange(e) {
     e.preventDefault();
-    const fTitle = document.querySelector("#fTitle");
-    const fCompany = document.querySelector("#fCompany");
-    const fYearsExp = document.querySelector("#fYearsExp");
-    const fLocation = document.querySelector("#fLocation");
-    const fExample1 = document.querySelector("#fExample1");
-    const fExample2 = document.querySelector("#fExample2");
-    const fExample3 = document.querySelector("#fExample3");
-
-    let jobTitle = document.querySelector("#jobTitle");
-    let companyName = document.querySelector("#companyName");
-    let years = document.querySelector("#years");
-    let location = document.querySelector("#location");
-    let ex1 = document.querySelector("#ex1");
-    let ex2 = document.querySelector("#ex2");
-    let ex3 = document.querySelector("#ex3");
+    let titleValue = e.target.form.firstChild;
+    let companyValue = titleValue.nextSibling.nextSibling;
+    let yearsValue = companyValue.nextSibling.nextSibling;
+    let locValue = yearsValue.nextSibling.nextSibling;
+    let ex1Val = locValue.nextSibling.nextSibling;
+    let ex2Val = ex1Val.nextSibling.nextSibling;
+    let ex3Val = ex2Val.nextSibling.nextSibling;
 
     this.setState({
       experience: {
-        jobTitle: fTitle.value,
-        company: fCompany.value,
-        years: fYearsExp.value,
-        location: fLocation.value,
-        ex1: fExample1.value,
-        ex2: fExample2.value,
-        ex3: fExample3.value,
+        jobTitle: titleValue.value,
+        company: companyValue.value,
+        years: yearsValue.value,
+        location: locValue.value,
+        ex1: ex1Val.value,
+        ex2: ex2Val.value,
+        ex3: ex3Val.value,
       },
     });
-
-    jobTitle.textContent = fTitle.value;
-    companyName.textContent = fCompany.value;
-    years.textContent = fYearsExp.value;
-    location.textContent = fLocation.value;
-    ex1.textContent = fExample1.value;
-    ex2.textContent = fExample2.value;
-    ex3.textContent = fExample3.value;
   }
 
   render() {
@@ -242,6 +354,8 @@ class App extends Component {
             skillChange={this.skillChange}
             educationChange={this.educationChange}
             experienceChange={this.experienceChange}
+            addEducation={this.addEducation}
+            addExperience={this.addExperience}
             {...this.state}
           />
         </div>
