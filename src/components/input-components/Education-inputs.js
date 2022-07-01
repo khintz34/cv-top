@@ -1,5 +1,5 @@
 import { Component } from "react";
-import "/Users/KevinHintz/the_oden_project/react-top/cv-top/src/styles/Inputs.css";
+import "../../styles/Inputs.css";
 
 class EducationInputs extends Component {
   //   constructor(props) {
@@ -13,21 +13,21 @@ class EducationInputs extends Component {
     return (
       <div id="main-Education-Inputs" className="outline">
         <h2>Education</h2>
-        <form
-          action="#"
-          id={this.props.data.main.formIDs.formID}
-          className="centerAll"
-          data-num={this.props.data.main.num}
-        >
+        <div>
           <input
             type="text"
-            id={this.props.data.main.formIDs.type}
-            name={this.props.data.main.formIDs.type}
             className="inputField"
             placeholder="Bachelors"
-            defaultValue={this.props.data.main.data.type}
+            value={this.props.data.type}
+            onChange={(e) => {
+              this.props.educationChange(
+                "type",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           />
-          <br />
+          {/* <br />
 
           <input
             type="text"
@@ -46,30 +46,28 @@ class EducationInputs extends Component {
             className="inputField"
             placeholder="2021-Present"
             defaultValue={this.props.data.main.data.years}
-          />
+          /> */}
           <br />
           <div className="btnLine">
             <button
               type="button"
-              id="eduSubmit"
               className="eduBtn"
-              onClick={this.props.educationChange}
-            >
-              Submit
-            </button>
-            <button
-              type="button"
-              className="eduBtn"
-              id="eduAdd"
               onClick={this.props.addEducation}
             >
               Add
             </button>
-            <button type="button" className="eduBtn" id="eduDelete">
+            <button
+              type="button"
+              className="eduBtn"
+              onClick={() => {
+                console.log("on click");
+                this.props.deleteEducation(this.props.dataIndex);
+              }}
+            >
               Delete
             </button>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

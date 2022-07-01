@@ -1,5 +1,5 @@
 import { Component } from "react";
-import "/Users/KevinHintz/the_oden_project/react-top/cv-top/src/styles/Inputs.css";
+import "../../styles/Inputs.css";
 
 class GeneralInputs extends Component {
   //   constructor(props) {

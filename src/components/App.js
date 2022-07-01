@@ -50,25 +50,9 @@ class App extends Component {
       },
       education: [
         {
-          main: {
-            formIDs: {
-              formID: "fEducation",
-              type: "fType",
-              institute: "fInstitute",
-              years: "fYears",
-            },
-            infoIDs: {
-              inst: "eduInst",
-              type: "eduType",
-              years: "eduYears",
-            },
-            data: {
-              type: "",
-              institute: "",
-              years: "",
-            },
-            num: 0,
-          },
+          type: "",
+          institute: "",
+          years: "",
         },
       ],
       expForms: [
@@ -101,6 +85,7 @@ class App extends Component {
     this.experienceChange = this.experienceChange.bind(this);
     this.addEducation = this.addEducation.bind(this);
     this.addExperience = this.addExperience.bind(this);
+    this.deleteEducation = this.deleteEducation.bind(this);
   }
 
   handleChange = (e) => {
@@ -223,78 +208,44 @@ class App extends Component {
     }
   }
 
-  educationChange(e) {
-    e.preventDefault();
-    let trackingNum = e.target.form.getAttribute("data-num");
-    console.log(trackingNum);
-    console.log(this.state.education[trackingNum]);
+  educationChange(type, value, index) {
+    this.setState((previousEducationData) => {
+      const { education } = previousEducationData;
+      education[index][type] = value;
 
-    let typeValue = e.target.form.firstChild;
-    let instValue = typeValue.nextSibling.nextSibling;
-    let yearsValue = instValue.nextSibling.nextSibling;
-
-    // let test = this.state.education.filter((data) => data.main.num === 0);
-    // console.log(`this is test: ${test}`);
-
-    this.setState(
-      {
-        education: [
-          // ...this.state.education,
-          {
-            main: {
-              ...this.state.education.main,
-              formIDs: {
-                formID: "fEducation",
-                type: "fType",
-                institute: "fInstitute",
-                years: "fYears",
-              },
-              infoIDs: {
-                inst: "eduInst",
-                type: "eduType",
-                years: "eduYears",
-              },
-              data: {
-                type: typeValue.value,
-                institute: instValue.value,
-                years: yearsValue.value,
-              },
-            },
-          },
-        ],
-      },
-      console.log(this.state.education)
-    );
+      return {
+        ...previousEducationData,
+        education,
+      };
+    });
   }
 
-  addEducation(e) {
-    let num = this.state.education.length;
-    this.setState({
-      education: [
-        ...this.state.education,
-        {
-          main: {
-            ...this.state.education.main,
-            formIDs: {
-              formID: "fEducation" + num,
-              type: "fType" + num,
-              institute: "fInstitute" + num,
-              years: "fYears" + num,
-            },
-            infoIDs: {
-              inst: "eduInst" + num,
-              type: "eduType" + num,
-              years: "eduYears" + num,
-            },
-            data: {
-              type: "",
-              institute: "",
-              years: "",
-            },
-            num: num,
+  addEducation() {
+    this.setState((previousEducationData) => {
+      const { education } = previousEducationData;
+
+      return {
+        ...previousEducationData,
+        education: [
+          ...education,
+          {
+            type: "",
+            institute: "",
+            years: "",
           },
-        },
-      ],
+        ],
+      };
+    });
+  }
+
+  deleteEducation(index) {
+    this.setState((previousEducationData) => {
+      const { education } = previousEducationData;
+
+      return {
+        ...previousEducationData,
+        education: education.filter((item, i) => i !== index),
+      };
     });
   }
 
@@ -356,6 +307,7 @@ class App extends Component {
             experienceChange={this.experienceChange}
             addEducation={this.addEducation}
             addExperience={this.addExperience}
+            deleteEducation={this.deleteEducation}
             {...this.state}
           />
         </div>

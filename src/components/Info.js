@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../styles/Info.css";
-import uniqid from "uniqid";
 import Education from "./Education-Info";
 import Skills from "./Skills-Info";
 
@@ -10,14 +9,18 @@ class Info extends Component {
   //   }
 
   render() {
-    let test =
-      this.props && this.props.education.length > 0 ? (
-        this.props.education.map((formData) => (
-          <Education data={formData} {...this.props} key={uniqid()} />
-        ))
-      ) : (
-        <span>ERROR - INFO.JS</span>
-      );
+    // let test =
+    //   this.props && this.props.education.length > 0 ? (
+    //     this.props.education.map((formData, i) => (
+    //       <Education
+    //         data={formData}
+    //         educationChange={this.props.educationChange}
+    //         key={`education-input-section-${i}`}
+    //       />
+    //     ))
+    //   ) : (
+    //     <span>ERROR - INFO.JS</span>
+    //   );
 
     return (
       <div id="main-Info">
@@ -25,7 +28,10 @@ class Info extends Component {
         {/* {this.props.education.map((formData) => (
           <Education data={formData} {...this.props} key={uniqid()} />
         ))} */}
-        {test}
+        {/* {test} */}
+        {this.props.education.map((formData, i) => (
+          <Education data={formData} key={`education-info-section-${i}`} />
+        ))}
       </div>
     );
   }
