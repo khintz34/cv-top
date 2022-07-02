@@ -2,109 +2,137 @@ import { Component } from "react";
 import "../../styles/Inputs.css";
 
 class ExperienceInputs extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //   }
-
   render() {
-    // const { task, tasks } = this.state;
     return (
       <div id="main-Experience-Inputs" className="outline">
         <h2>Experience</h2>
-        <form action="#" id={this.props.data.form.formID} className="centerAll">
+        <div action="#" className="centerAll">
           <input
             type="text"
-            id={this.props.data.form.title}
-            name={this.props.data.form.title}
             className="inputField"
             placeholder="Software Engineer"
-            defaultValue={this.props.experience.jobTitle}
+            value={this.props.data.jobTitle}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "jobTitle",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           />
           <br />
 
           <input
             type="text"
-            id={this.props.data.form.company}
-            name={this.props.data.form.company}
             className="inputField"
             placeholder="Company Name"
-            defaultValue={this.props.experience.company}
+            value={this.props.data.company}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "company",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           />
           <br />
 
           <input
             type="text"
-            id={this.props.data.form.yearsExp}
-            name={this.props.data.form.yearsExp}
             className="inputField"
             placeholder="Year Started - Year Ended"
-            defaultValue={this.props.experience.years}
+            value={this.props.data.years}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "years",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           />
           <br />
 
           <input
             type="text"
-            id={this.props.data.form.location}
-            name={this.props.data.form.location}
             className="inputField"
             placeholder="City, State"
-            defaultValue={this.props.experience.location}
+            value={this.props.data.location}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "location",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           />
           <br />
 
           <textarea
-            name={this.props.data.form.ex1}
-            id={this.props.data.form.ex1}
             cols="15"
             rows="3"
             placeholder="Example of Duties 1 (160 character limit)"
             maxLength="160ch"
-            defaultValue={this.props.experience.ex1}
+            value={this.props.data.ex1}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "ex1",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           ></textarea>
           <br />
 
           <textarea
-            name={this.props.data.form.ex2}
-            id={this.props.data.form.ex2}
             cols="15"
             rows="3"
             placeholder="Example of Duties 2 (160 character limit)"
             maxLength="160ch"
-            defaultValue={this.props.experience.ex2}
+            value={this.props.data.ex2}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "ex2",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           ></textarea>
           <br />
 
           <textarea
-            name={this.props.data.form.ex3}
-            id={this.props.data.form.ex3}
             cols="15"
             rows="3"
             placeholder="Example of Duties 3 (160 character limit)"
             maxLength="160ch"
-            defaultValue={this.props.experience.ex3}
+            value={this.props.data.ex3}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "ex3",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           ></textarea>
           <div className="btnLine">
             <button
               className="eduBtn"
-              id="expSub"
-              type="button"
-              onClick={this.props.experienceChange}
-            >
-              Submit
-            </button>
-            <button
-              className="eduBtn"
-              id="eduAdd"
               type="button"
               onClick={this.props.addExperience}
             >
               Add
             </button>
-            <button type="button" className="eduBtn" id="eduDelete">
+            <button
+              type="button"
+              className="eduBtn"
+              onClick={() => {
+                console.log("on click");
+                this.props.deleteExperience(this.props.dataIndex);
+              }}
+            >
               Delete
             </button>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

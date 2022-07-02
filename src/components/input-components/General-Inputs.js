@@ -7,100 +7,109 @@ class GeneralInputs extends Component {
   //   }
 
   render() {
-    // const { task, tasks } = this.state;
-
     return (
       <div id="main-Personal-Inputs" className="outline">
         <h2>General Information</h2>
-        <form
-          action=""
-          id="fPersonal"
-          onChange={this.props.handleChange}
-          className="centerAll"
-        >
+        <div className="centerAll">
           <input
             type="text"
-            id="fName"
-            name="fName"
             className="inputField"
             placeholder="Name"
+            value={this.props.data.name}
+            onChange={(e) => {
+              this.props.changeGeneral("name", e.target.value);
+            }}
           />
           <br />
 
           <input
             type="email"
-            id="fEmail"
-            name="fEmail"
             className="inputField"
             placeholder="Email"
+            value={this.props.data.email}
+            onChange={(e) => {
+              this.props.changeGeneral("email", e.target.value);
+            }}
           />
           <br />
 
           <input
             type="tel"
-            id="fNum"
-            name="fNum"
             className="inputField"
             placeholder="Cell Phone Number"
+            value={this.props.data.cell}
+            onChange={(e) => {
+              this.props.changeGeneral("cell", e.target.value);
+            }}
           />
           <br />
 
           <input
             type="text"
-            id="fCity"
-            name="fCity"
             className="inputField"
             placeholder="City"
+            value={this.props.data.city}
+            onChange={(e) => {
+              this.props.changeGeneral("city", e.target.value);
+            }}
           />
           <br />
 
           <input
             type="text"
-            id="fState"
-            name="fState"
             className="inputField"
             placeholder="State"
+            value={this.props.data.state}
+            onChange={(e) => {
+              this.props.changeGeneral("state", e.target.value);
+            }}
           />
           <br />
 
           <input
             type="url"
-            id="fGit"
-            name="fGit"
             className="inputField"
             placeholder="GitHub"
+            value={this.props.data.gitHub}
+            onChange={(e) => {
+              this.props.changeGeneral("gitHub", e.target.value);
+            }}
           />
           <br />
 
           <input
             type="url"
-            id="fLinked"
-            name="fLinked"
             className="inputField"
             placeholder="LinkedIn"
+            value={this.props.data.linkedIn}
+            onChange={(e) => {
+              this.props.changeGeneral("linkedIn", e.target.value);
+            }}
           />
           <br />
 
           <input
             type="text"
-            id="fWeb"
-            name="fWeb"
             className="inputField"
             placeholder="Website"
+            value={this.props.data.website}
+            onChange={(e) => {
+              this.props.changeGeneral("website", e.target.value);
+            }}
           />
           <br />
 
           <textarea
-            id="fPara"
-            name="fPara"
             className="inputField"
             placeholder="Overview Paragraph (300 Character Limit)"
             maxLength="350ch"
-          >
-            {/* Write an Overview Para here */}
-          </textarea>
+            value={this.props.data.overview}
+            onChange={(e) => {
+              this.props.changeGeneral("overview", e.target.value);
+            }}
+          ></textarea>
           <br />
-        </form>
+        </div>
       </div>
     );
   }

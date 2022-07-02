@@ -2,18 +2,11 @@ import { Component } from "react";
 import "../../styles/Inputs.css";
 
 class EducationInputs extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //   }
-
   render() {
-    // const { task, tasks } = this.state;
-    // console.log(this.props.data);
-    // console.log(this.props.education[0]);
     return (
       <div id="main-Education-Inputs" className="outline">
         <h2>Education</h2>
-        <div>
+        <div className="centerAll">
           <input
             type="text"
             className="inputField"
@@ -27,26 +20,36 @@ class EducationInputs extends Component {
               );
             }}
           />
-          {/* <br />
+          <br />
 
           <input
             type="text"
-            id={this.props.data.main.formIDs.institute}
-            name={this.props.data.main.formIDs.institute}
             className="inputField"
             placeholder="The University of Odin"
-            defaultValue={this.props.data.main.data.institute}
+            value={this.props.data.institute}
+            onChange={(e) => {
+              this.props.educationChange(
+                "institute",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
           />
           <br />
 
           <input
             type="text"
-            id={this.props.data.main.formIDs.years}
-            name={this.props.data.main.formIDs.years}
             className="inputField"
             placeholder="2021-Present"
-            defaultValue={this.props.data.main.data.years}
-          /> */}
+            value={this.props.data.years}
+            onChange={(e) => {
+              this.props.educationChange(
+                "years",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
+          />
           <br />
           <div className="btnLine">
             <button

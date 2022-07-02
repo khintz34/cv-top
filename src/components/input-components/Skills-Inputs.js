@@ -2,12 +2,7 @@ import { Component } from "react";
 import "../../styles/Inputs.css";
 
 class SkillsInputs extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //   }
-
   render() {
-    // const { task, tasks } = this.state;
     return (
       <div id="main-Skills-Inputs" className="outline">
         <h2>Relevant Skills / Attributes</h2>

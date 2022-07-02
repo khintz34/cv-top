@@ -12,17 +12,15 @@ class App extends Component {
 
     this.state = {
       general: {
-        name: "Name",
-        overview: "Overview Paragraph",
-      },
-      contact: {
-        email: "Email",
-        cell: "Cell Number",
-        city: "City",
-        state: "State",
-        gitHub: "GitHub",
-        linkedIn: "LinkedIn",
-        website: "Website",
+        name: "",
+        overview: "",
+        email: "",
+        cell: "",
+        city: "",
+        state: "",
+        gitHub: "",
+        linkedIn: "",
+        website: "",
       },
       skills: {
         fSkill1: "",
@@ -34,20 +32,17 @@ class App extends Component {
         fSkill7: "",
         fSkill8: "",
       },
-      // education: {
-      //   type: "",
-      //   institute: "",
-      //   years: "",
-      // },
-      experience: {
-        jobTitle: "",
-        company: "",
-        years: "",
-        location: "",
-        ex1: "",
-        ex2: "",
-        ex3: "",
-      },
+      experience: [
+        {
+          jobTitle: "",
+          company: "",
+          years: "",
+          location: "",
+          ex1: "",
+          ex2: "",
+          ex3: "",
+        },
+      ],
       education: [
         {
           type: "",
@@ -55,114 +50,32 @@ class App extends Component {
           years: "",
         },
       ],
-      expForms: [
-        {
-          form: {
-            formID: "fExperience",
-            title: "fTitle",
-            company: "fCompany",
-            yearsExp: "fYearsExp",
-            location: "fLocation",
-            ex1: "fExample1",
-            ex2: "fExample2",
-            ex3: "fExample3",
-          },
-        },
-      ],
-      // educationInfo: [
-      //   {
-      //     main: {
-      //       inst: "eduInst",
-      //       type: "eduType",
-      //       years: "eduYears",
-      //     },
-      //   },
-      // ],
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.changeGeneral = this.changeGeneral.bind(this);
     this.skillChange = this.skillChange.bind(this);
     this.educationChange = this.educationChange.bind(this);
-    this.experienceChange = this.experienceChange.bind(this);
+    this.changeExperience = this.changeExperience.bind(this);
     this.addEducation = this.addEducation.bind(this);
     this.addExperience = this.addExperience.bind(this);
     this.deleteEducation = this.deleteEducation.bind(this);
+    this.deleteExperience = this.deleteExperience.bind(this);
   }
 
-  handleChange = (e) => {
-    if (e.target.id === "fName") {
-      this.setState({
-        general: {
-          ...this.state.general,
-          name: e.target.value,
-        },
-      });
-    } else if (e.target.id === "fPara") {
-      this.setState({
-        general: {
-          ...this.state.general,
-          overview: e.target.value,
-        },
-      });
-    } else if (e.target.id === "fEmail") {
-      this.setState({
-        contact: {
-          ...this.state.contact,
-          email: e.target.value,
-        },
-      });
-    } else if (e.target.id === "fNum") {
-      this.setState({
-        contact: {
-          ...this.state.contact,
-          cell: e.target.value,
-        },
-      });
-    } else if (e.target.id === "fCity") {
-      this.setState({
-        contact: {
-          ...this.state.contact,
-          city: e.target.value,
-        },
-      });
-    } else if (e.target.id === "fState") {
-      this.setState({
-        contact: {
-          ...this.state.contact,
-          state: e.target.value,
-        },
-      });
-    } else if (e.target.id === "fLinked") {
-      this.setState({
-        contact: {
-          ...this.state.contact,
-          linkedIn: e.target.value,
-        },
-      });
-    } else if (e.target.id === "fGit") {
-      this.setState({
-        contact: {
-          ...this.state.contact,
-          gitHub: e.target.value,
-        },
-      });
-    } else if (e.target.id === "fWeb") {
-      this.setState(
-        {
-          contact: {
-            ...this.state.contact,
-            website: e.target.value,
-          },
-        },
-        () => {
-          this.showWeb();
-        }
-      );
-    }
+  changeGeneral = (type, value) => {
+    this.setState((previousData) => {
+      const { general } = previousData;
+      general[type] = value;
+
+      return {
+        ...previousData,
+        general,
+      };
+    });
+    this.showWeb();
   };
 
   showWeb() {
-    const webDiv = document.querySelector("#webDiv");
-
+    let webDiv = document.querySelector("#webDiv");
     if (webDiv.textContent === "" || webDiv.textContent === "Website") {
       webDiv.classList.add("hide");
     } else {
@@ -250,72 +163,76 @@ class App extends Component {
   }
 
   addExperience(e) {
-    let num = this.state.expForms.length;
-    this.setState({
-      expForms: [
-        ...this.state.eduForms,
-        {
-          form: {
-            formID: "fExperience" + num,
-            title: "fTitle" + num,
-            company: "fCompany" + num,
-            yearsExp: "fYearsExp" + num,
-            location: "fLocation" + num,
-            ex1: "fExample1" + num,
-            ex2: "fExample2" + num,
-            ex3: "fExample3" + num,
+    this.setState((previousExpData) => {
+      const { experience } = previousExpData;
+
+      return {
+        ...previousExpData,
+        experience: [
+          ...experience,
+          {
+            jobTitle: "",
+            company: "",
+            years: "",
+            location: "",
+            ex1: "",
+            ex2: "",
+            ex3: "",
           },
-        },
-      ],
+        ],
+      };
     });
   }
 
-  experienceChange(e) {
-    e.preventDefault();
-    let titleValue = e.target.form.firstChild;
-    let companyValue = titleValue.nextSibling.nextSibling;
-    let yearsValue = companyValue.nextSibling.nextSibling;
-    let locValue = yearsValue.nextSibling.nextSibling;
-    let ex1Val = locValue.nextSibling.nextSibling;
-    let ex2Val = ex1Val.nextSibling.nextSibling;
-    let ex3Val = ex2Val.nextSibling.nextSibling;
+  changeExperience(type, value, index) {
+    this.setState((previousExpData) => {
+      const { experience } = previousExpData;
+      experience[index][type] = value;
 
-    this.setState({
-      experience: {
-        jobTitle: titleValue.value,
-        company: companyValue.value,
-        years: yearsValue.value,
-        location: locValue.value,
-        ex1: ex1Val.value,
-        ex2: ex2Val.value,
-        ex3: ex3Val.value,
-      },
+      return {
+        ...previousExpData,
+        experience,
+      };
+    });
+  }
+
+  deleteExperience(index) {
+    this.setState((previousExpData) => {
+      const { experience } = previousExpData;
+
+      return {
+        ...previousExpData,
+        experience: experience.filter((item, i) => i !== index),
+      };
     });
   }
 
   render() {
-    // const { task, tasks } = this.state;
-
     return (
       <div id="main">
         <h1 id="mainTitle">Resume Builder</h1>
         <div id="inputSection">
           <Inputs
-            handleChange={this.handleChange}
+            changeGeneral={this.changeGeneral}
             skillChange={this.skillChange}
             educationChange={this.educationChange}
-            experienceChange={this.experienceChange}
+            changeExperience={this.changeExperience}
             addEducation={this.addEducation}
             addExperience={this.addExperience}
             deleteEducation={this.deleteEducation}
-            {...this.state}
+            deleteExperience={this.deleteExperience}
+            dataGeneral={this.state.general}
+            dataContact={this.state.contact}
+            dataSkills={this.state.skills}
+            education={this.state.education}
+            experience={this.state.experience}
           />
         </div>
         <div id="template">
-          <General {...this.state} />
+          <General dataGeneral={this.state.general} />
           <div id="bottomSection">
-            <Work {...this.state} />
-            <Info {...this.state} />
+            <Work experience={this.state.experience} />
+            <Info education={this.state.education} skills={this.state.skills} />
           </div>
         </div>
       </div>
