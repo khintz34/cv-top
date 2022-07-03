@@ -1,18 +1,16 @@
 import { Component } from "react";
 import "../../styles/Inputs.css";
+import InputField from "../Input-Field";
 
 class EducationInputs extends Component {
   render() {
     return (
       <div id="main-Education-Inputs" className="outline">
-        <h2>Education</h2>
         <div className="centerAll">
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="Bachelors"
             value={this.props.data.type}
-            onChange={(e) => {
+            change={(e) => {
               this.props.educationChange(
                 "type",
                 e.target.value,
@@ -20,14 +18,12 @@ class EducationInputs extends Component {
               );
             }}
           />
-          <br />
 
-          <input
-            type="text"
-            className="inputField"
+          <br />
+          <InputField
             placeholder="The University of Odin"
             value={this.props.data.institute}
-            onChange={(e) => {
+            change={(e) => {
               this.props.educationChange(
                 "institute",
                 e.target.value,
@@ -35,14 +31,13 @@ class EducationInputs extends Component {
               );
             }}
           />
+
           <br />
 
-          <input
-            type="text"
-            className="inputField"
-            placeholder="2021-Present"
+          <InputField
+            placeholder="2020 - Present"
             value={this.props.data.years}
-            onChange={(e) => {
+            change={(e) => {
               this.props.educationChange(
                 "years",
                 e.target.value,
@@ -50,6 +45,7 @@ class EducationInputs extends Component {
               );
             }}
           />
+
           <br />
           <div className="btnLine">
             <button

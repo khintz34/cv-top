@@ -55,6 +55,9 @@
   grid-column: 3 /4;
   grid-row: 1 / 3;
   margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .field-Item {
@@ -71,4 +74,10 @@
   flex-direction: row;
   justify-content: center;
   gap: 20px;
+}
+
+#workExp {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-top: 5px;
 }

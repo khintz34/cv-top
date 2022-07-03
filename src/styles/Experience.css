@@ -12,22 +12,6 @@
   justify-content: space-between;
 }
 
-#jobTitle,
-#years {
-  text-align: left;
-  margin-left: 5px;
-}
-
-#companyName {
-  margin-left: auto;
-  padding-right: 5px;
-}
-
-#location {
-  padding-right: 5px;
-  margin-left: auto;
-}
-
 li {
   margin-top: 5px;
 }
@@ -39,4 +23,5 @@ li {
 #workExp {
   margin-bottom: 5px;
   margin-top: 5px;
+  padding-top: 5px;
 }

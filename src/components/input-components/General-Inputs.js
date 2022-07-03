@@ -1,5 +1,8 @@
 import { Component } from "react";
 import "../../styles/Inputs.css";
+import InputField from "../Input-Field";
+import TextareaComponent from "../Textarea";
+import HeaderInputs from "./Header-input";
 
 class GeneralInputs extends Component {
   //   constructor(props) {
@@ -9,105 +12,82 @@ class GeneralInputs extends Component {
   render() {
     return (
       <div id="main-Personal-Inputs" className="outline">
-        <h2>General Information</h2>
+        <HeaderInputs header="General Information" />
         <div className="centerAll">
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="Name"
             value={this.props.data.name}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeGeneral("name", e.target.value);
             }}
           />
           <br />
-
-          <input
-            type="email"
-            className="inputField"
+          <InputField
             placeholder="Email"
             value={this.props.data.email}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeGeneral("email", e.target.value);
             }}
           />
           <br />
-
-          <input
-            type="tel"
-            className="inputField"
+          <InputField
             placeholder="Cell Phone Number"
             value={this.props.data.cell}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeGeneral("cell", e.target.value);
             }}
           />
           <br />
-
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="City"
             value={this.props.data.city}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeGeneral("city", e.target.value);
             }}
           />
           <br />
-
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="State"
             value={this.props.data.state}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeGeneral("state", e.target.value);
             }}
           />
           <br />
-
-          <input
-            type="url"
-            className="inputField"
+          <InputField
             placeholder="GitHub"
             value={this.props.data.gitHub}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeGeneral("gitHub", e.target.value);
             }}
           />
           <br />
-
-          <input
-            type="url"
-            className="inputField"
+          <InputField
             placeholder="LinkedIn"
             value={this.props.data.linkedIn}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeGeneral("linkedIn", e.target.value);
             }}
           />
           <br />
-
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="Website"
             value={this.props.data.website}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeGeneral("website", e.target.value);
             }}
           />
           <br />
 
-          <textarea
-            className="inputField"
+          <TextareaComponent
             placeholder="Overview Paragraph (300 Character Limit)"
             maxLength="350ch"
+            class="inputField"
             value={this.props.data.overview}
             onChange={(e) => {
               this.props.changeGeneral("overview", e.target.value);
             }}
-          ></textarea>
+          />
           <br />
         </div>
       </div>

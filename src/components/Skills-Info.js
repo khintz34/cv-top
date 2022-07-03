@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/Skills.css";
+import H3Header from "./H3-header";
 
 class Skills extends Component {
   //   constructor(props) {
@@ -9,7 +10,7 @@ class Skills extends Component {
   render() {
     return (
       <div id="main-Skills">
-        <h3 id="header-Skills">Technical Skills</h3>
+        <H3Header header="Technical Skills" />
         <div className="skillDiv" id="fSkill1-Info">
           {this.props.skills.fSkill1}
         </div>

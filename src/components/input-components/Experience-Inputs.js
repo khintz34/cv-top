@@ -1,5 +1,7 @@
 import { Component } from "react";
 import "../../styles/Inputs.css";
+import InputField from "../Input-Field";
+import TextareaComponent from "../Textarea";
 
 class ExperienceInputs extends Component {
   render() {
@@ -7,12 +9,10 @@ class ExperienceInputs extends Component {
       <div id="main-Experience-Inputs" className="outline">
         <h2>Experience</h2>
         <div action="#" className="centerAll">
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="Software Engineer"
             value={this.props.data.jobTitle}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeExperience(
                 "jobTitle",
                 e.target.value,
@@ -21,13 +21,10 @@ class ExperienceInputs extends Component {
             }}
           />
           <br />
-
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="Company Name"
             value={this.props.data.company}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeExperience(
                 "company",
                 e.target.value,
@@ -36,13 +33,10 @@ class ExperienceInputs extends Component {
             }}
           />
           <br />
-
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="Year Started - Year Ended"
             value={this.props.data.years}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeExperience(
                 "years",
                 e.target.value,
@@ -51,13 +45,10 @@ class ExperienceInputs extends Component {
             }}
           />
           <br />
-
-          <input
-            type="text"
-            className="inputField"
+          <InputField
             placeholder="City, State"
             value={this.props.data.location}
-            onChange={(e) => {
+            change={(e) => {
               this.props.changeExperience(
                 "location",
                 e.target.value,
@@ -66,13 +57,12 @@ class ExperienceInputs extends Component {
             }}
           />
           <br />
-
-          <textarea
-            cols="15"
-            rows="3"
+          <TextareaComponent
             placeholder="Example of Duties 1 (160 character limit)"
             maxLength="160ch"
             value={this.props.data.ex1}
+            cols="15"
+            rows="3"
             onChange={(e) => {
               this.props.changeExperience(
                 "ex1",
@@ -80,15 +70,16 @@ class ExperienceInputs extends Component {
                 this.props.dataIndex
               );
             }}
-          ></textarea>
+          />
+
           <br />
 
-          <textarea
-            cols="15"
-            rows="3"
+          <TextareaComponent
             placeholder="Example of Duties 2 (160 character limit)"
             maxLength="160ch"
             value={this.props.data.ex2}
+            cols="15"
+            rows="3"
             onChange={(e) => {
               this.props.changeExperience(
                 "ex2",
@@ -96,15 +87,14 @@ class ExperienceInputs extends Component {
                 this.props.dataIndex
               );
             }}
-          ></textarea>
+          />
           <br />
-
-          <textarea
-            cols="15"
-            rows="3"
+          <TextareaComponent
             placeholder="Example of Duties 3 (160 character limit)"
             maxLength="160ch"
             value={this.props.data.ex3}
+            cols="15"
+            rows="3"
             onChange={(e) => {
               this.props.changeExperience(
                 "ex3",
@@ -112,7 +102,8 @@ class ExperienceInputs extends Component {
                 this.props.dataIndex
               );
             }}
-          ></textarea>
+          />
+
           <div className="btnLine">
             <button
               className="eduBtn"

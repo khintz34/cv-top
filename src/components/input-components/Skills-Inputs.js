@@ -1,11 +1,12 @@
 import { Component } from "react";
 import "../../styles/Inputs.css";
+import HeaderInputs from "./Header-input";
 
 class SkillsInputs extends Component {
   render() {
     return (
       <div id="main-Skills-Inputs" className="outline">
-        <h2>Relevant Skills / Attributes</h2>
+        <HeaderInputs header="Relevant Skills / Attributes" />
         <form
           action=""
           id="fSkills"

@@ -4,6 +4,7 @@ import EducationInputs from "./Education-inputs";
 import SkillsInputs from "./Skills-Inputs";
 import ExperienceInputs from "./Experience-Inputs";
 import GeneralInputs from "./General-Inputs";
+import HeaderInputs from "./Header-input";
 
 class Inputs extends Component {
   render() {
@@ -13,7 +14,9 @@ class Inputs extends Component {
           changeGeneral={this.props.changeGeneral}
           data={this.props.dataGeneral}
         />
+
         <SkillsInputs skillChange={this.props.skillChange} />
+        <HeaderInputs header="Education" />
         {this.props.education.map((formData, i) => (
           <EducationInputs
             dataIndex={i}
@@ -24,6 +27,7 @@ class Inputs extends Component {
             key={`education-input-section-${i}`}
           />
         ))}
+        <HeaderInputs header="Work Experience" />
         {this.props.experience.map((formData, i) => (
           <ExperienceInputs
             data={formData}
