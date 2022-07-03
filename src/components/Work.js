@@ -9,7 +9,11 @@ class Work extends Component {
       <div id="main-Work">
         <HeaderInputs header="Work Experience" id="workExp" />
         {this.props.experience.map((formData, i) => (
-          <Experience data={formData} key={`experience-info-section-${i}`} />
+          <Experience
+            data={formData}
+            key={`experience-info-section-${i}`}
+            index={i}
+          />
         ))}
       </div>
     );

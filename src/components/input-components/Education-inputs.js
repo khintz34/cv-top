@@ -1,5 +1,6 @@
 import { Component } from "react";
 import "../../styles/Inputs.css";
+import ButtonComponent from "../Button-Component";
 import InputField from "../Input-Field";
 
 class EducationInputs extends Component {
@@ -10,6 +11,7 @@ class EducationInputs extends Component {
           <InputField
             placeholder="Bachelors"
             value={this.props.data.type}
+            className="inputField"
             change={(e) => {
               this.props.educationChange(
                 "type",
@@ -23,6 +25,7 @@ class EducationInputs extends Component {
           <InputField
             placeholder="The University of Odin"
             value={this.props.data.institute}
+            className="inputField"
             change={(e) => {
               this.props.educationChange(
                 "institute",
@@ -37,6 +40,7 @@ class EducationInputs extends Component {
           <InputField
             placeholder="2020 - Present"
             value={this.props.data.years}
+            className="inputField"
             change={(e) => {
               this.props.educationChange(
                 "years",
@@ -46,26 +50,15 @@ class EducationInputs extends Component {
             }}
           />
 
+          <ButtonComponent
+            class="eduBtn"
+            add={this.props.addEducation}
+            delete={() => {
+              this.props.deleteEducation(this.props.dataIndex);
+            }}
+          />
+
           <br />
-          <div className="btnLine">
-            <button
-              type="button"
-              className="eduBtn"
-              onClick={this.props.addEducation}
-            >
-              Add
-            </button>
-            <button
-              type="button"
-              className="eduBtn"
-              onClick={() => {
-                console.log("on click");
-                this.props.deleteEducation(this.props.dataIndex);
-              }}
-            >
-              Delete
-            </button>
-          </div>
         </div>
       </div>
     );

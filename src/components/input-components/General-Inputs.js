@@ -17,6 +17,7 @@ class GeneralInputs extends Component {
           <InputField
             placeholder="Name"
             value={this.props.data.name}
+            className="inputField"
             change={(e) => {
               this.props.changeGeneral("name", e.target.value);
             }}
@@ -25,13 +26,15 @@ class GeneralInputs extends Component {
           <InputField
             placeholder="Email"
             value={this.props.data.email}
+            className="inputField"
             change={(e) => {
               this.props.changeGeneral("email", e.target.value);
             }}
           />
           <br />
           <InputField
-            placeholder="Cell Phone Number"
+            placeholder="Cell Phone Number: 8005553231"
+            className="inputField"
             value={this.props.data.cell}
             change={(e) => {
               this.props.changeGeneral("cell", e.target.value);
@@ -40,6 +43,7 @@ class GeneralInputs extends Component {
           <br />
           <InputField
             placeholder="City"
+            className="inputField"
             value={this.props.data.city}
             change={(e) => {
               this.props.changeGeneral("city", e.target.value);
@@ -48,6 +52,7 @@ class GeneralInputs extends Component {
           <br />
           <InputField
             placeholder="State"
+            className="inputField"
             value={this.props.data.state}
             change={(e) => {
               this.props.changeGeneral("state", e.target.value);
@@ -56,6 +61,7 @@ class GeneralInputs extends Component {
           <br />
           <InputField
             placeholder="GitHub"
+            className="inputField"
             value={this.props.data.gitHub}
             change={(e) => {
               this.props.changeGeneral("gitHub", e.target.value);
@@ -64,6 +70,7 @@ class GeneralInputs extends Component {
           <br />
           <InputField
             placeholder="LinkedIn"
+            className="inputField"
             value={this.props.data.linkedIn}
             change={(e) => {
               this.props.changeGeneral("linkedIn", e.target.value);
@@ -71,7 +78,8 @@ class GeneralInputs extends Component {
           />
           <br />
           <InputField
-            placeholder="Website"
+            placeholder="Website: Optional"
+            className="inputField"
             value={this.props.data.website}
             change={(e) => {
               this.props.changeGeneral("website", e.target.value);
@@ -81,6 +89,7 @@ class GeneralInputs extends Component {
 
           <TextareaComponent
             placeholder="Overview Paragraph (300 Character Limit)"
+            className="inputField"
             maxLength="350ch"
             class="inputField"
             value={this.props.data.overview}

@@ -15,7 +15,10 @@ class Inputs extends Component {
           data={this.props.dataGeneral}
         />
 
-        <SkillsInputs skillChange={this.props.skillChange} />
+        <SkillsInputs
+          skills={this.props.skills}
+          changeSkills={this.props.changeSkills}
+        />
         <HeaderInputs header="Education" />
         {this.props.education.map((formData, i) => (
           <EducationInputs

@@ -6,10 +6,11 @@ class InputField extends Component {
     return (
       <input
         type="text"
-        className="inputField"
+        className={this.props.className}
         placeholder={this.props.placeholder}
         onChange={this.props.change}
         value={this.props.value}
+        maxLength={this.props.maxLength}
       />
     );
   }

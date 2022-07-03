@@ -1,17 +1,19 @@
 import { Component } from "react";
 import "../../styles/Inputs.css";
+import "../../styles/Experience.css";
 import InputField from "../Input-Field";
 import TextareaComponent from "../Textarea";
+import ButtonComponent from "../Button-Component";
 
 class ExperienceInputs extends Component {
   render() {
     return (
       <div id="main-Experience-Inputs" className="outline">
-        <h2>Experience</h2>
         <div action="#" className="centerAll">
           <InputField
             placeholder="Software Engineer"
             value={this.props.data.jobTitle}
+            className="inputField"
             change={(e) => {
               this.props.changeExperience(
                 "jobTitle",
@@ -24,6 +26,7 @@ class ExperienceInputs extends Component {
           <InputField
             placeholder="Company Name"
             value={this.props.data.company}
+            className="inputField"
             change={(e) => {
               this.props.changeExperience(
                 "company",
@@ -36,6 +39,7 @@ class ExperienceInputs extends Component {
           <InputField
             placeholder="Year Started - Year Ended"
             value={this.props.data.years}
+            className="inputField"
             change={(e) => {
               this.props.changeExperience(
                 "years",
@@ -48,6 +52,7 @@ class ExperienceInputs extends Component {
           <InputField
             placeholder="City, State"
             value={this.props.data.location}
+            className="inputField"
             change={(e) => {
               this.props.changeExperience(
                 "location",
@@ -104,25 +109,47 @@ class ExperienceInputs extends Component {
             }}
           />
 
-          <div className="btnLine">
-            <button
-              className="eduBtn"
-              type="button"
-              onClick={this.props.addExperience}
-            >
-              Add
-            </button>
-            <button
-              type="button"
-              className="eduBtn"
-              onClick={() => {
-                console.log("on click");
-                this.props.deleteExperience(this.props.dataIndex);
-              }}
-            >
-              Delete
-            </button>
-          </div>
+          <TextareaComponent
+            placeholder="Example of Duties 4 (160 character limit)"
+            maxLength="160ch"
+            value={this.props.data.ex4}
+            cols="15"
+            rows="3"
+            class="hide"
+            id={"ex4-input" + this.props.dataIndex}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "ex4",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
+          />
+
+          <TextareaComponent
+            placeholder="Example of Duties 5 (160 character limit)"
+            maxLength="160ch"
+            value={this.props.data.ex5}
+            cols="15"
+            rows="3"
+            class="hide"
+            id={"ex5-input" + this.props.dataIndex}
+            onChange={(e) => {
+              this.props.changeExperience(
+                "ex5",
+                e.target.value,
+                this.props.dataIndex
+              );
+            }}
+          />
+
+          <ButtonComponent
+            class="eduBtn"
+            add={this.props.addExperience}
+            delete={() => {
+              this.props.deleteExperience(this.props.dataIndex);
+            }}
+          />
         </div>
       </div>
     );

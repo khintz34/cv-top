@@ -11,29 +11,29 @@ class Skills extends Component {
     return (
       <div id="main-Skills">
         <H3Header header="Technical Skills" />
-        <div className="skillDiv" id="fSkill1-Info">
-          {this.props.skills.fSkill1}
+        <div className="skillDiv" id="skill1-Info">
+          {this.props.skills.skill1}
         </div>
-        <div className="skillDiv" id="fSkill2-Info">
-          {this.props.skills.fSkill2}
+        <div className="skillDiv" id="skill2-Info">
+          {this.props.skills.skill2}
         </div>
-        <div className="skillDiv" id="fSkill3-Info">
-          {this.props.skills.fSkill3}
+        <div className="skillDiv" id="skill3-Info">
+          {this.props.skills.skill3}
         </div>
-        <div className="skillDiv" id="fSkill4-Info">
-          {this.props.skills.fSkill4}
+        <div className="skillDiv" id="skill4-Info">
+          {this.props.skills.skill4}
         </div>
-        <div className="skillDiv" id="fSkill5-Info">
-          {this.props.skills.fSkill5}
+        <div className="skillDiv" id="skill5-Info">
+          {this.props.skills.skill5}
         </div>
-        <div className="skillDiv" id="fSkill6-Info">
-          {this.props.skills.fSkill6}
+        <div className="skillDiv" id="skill6-Info">
+          {this.props.skills.skill6}
         </div>
-        <div className="skillDiv" id="fSkill7-Info">
-          {this.props.skills.fSkill7}
+        <div className="skillDiv" id="skill7-Info">
+          {this.props.skills.skill7}
         </div>
-        <div className="skillDiv" id="fSkill8-Info">
-          {this.props.skills.fSkill8}
+        <div className="skillDiv" id="skill8-Info">
+          {this.props.skills.skill8}
         </div>
       </div>
     );

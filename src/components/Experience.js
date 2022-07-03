@@ -13,11 +13,23 @@ class Experience extends Component {
           <h4>{this.props.data.years}</h4>
           <h4>{this.props.data.location}</h4>
         </div>
-        <ol>
-          <li className="expWrap">{this.props.data.ex1}</li>
-          <li className="expWrap">{this.props.data.ex2}</li>
-          <li className="expWrap">{this.props.data.ex3}</li>
-        </ol>
+        <ul>
+          <li className="expWrap hide" id={"ex1-" + this.props.index}>
+            {this.props.data.ex1}
+          </li>
+          <li className="expWrap hide" id={"ex2-" + this.props.index}>
+            {this.props.data.ex2}
+          </li>
+          <li className="expWrap hide" id={"ex3-" + this.props.index}>
+            {this.props.data.ex3}
+          </li>
+          <li className="expWrap hide" id={"ex4-" + this.props.index}>
+            {this.props.data.ex4}
+          </li>
+          <li className="expWrap hide" id={"ex5-" + this.props.index}>
+            {this.props.data.ex5}
+          </li>
+        </ul>
       </div>
     );
   }

@@ -12,6 +12,7 @@ class TextareaComponent extends Component {
         onChange={this.props.onChange}
         cols={this.props.cols}
         rows={this.props.rows}
+        id={this.props.id}
       ></textarea>
     );
   }
