@@ -6,7 +6,7 @@ class General extends Component {
   render() {
     return (
       <div id="main-General">
-        <h1 id="nameField">{this.props.dataGeneral.name}</h1>
+        <h1 id="nameField">{this.props.dataGeneral.name} </h1>
         <p id="overviewPara">{this.props.dataGeneral.overview}</p>
         <Contact dataGeneral={this.props.dataGeneral} />
       </div>
