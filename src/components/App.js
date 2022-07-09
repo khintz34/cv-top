@@ -1,9 +1,10 @@
 import "../styles/App.css";
-import { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import General from "./general.js";
 import Work from "./Work";
 import Info from "./Info";
 import Inputs from "./input-components/Inputs";
+import FuncApp from "./functionalComp";
 
 class App extends Component {
   constructor(props) {
@@ -316,6 +317,7 @@ class App extends Component {
             <Info education={this.state.education} skills={this.state.skills} />
           </div>
         </div>
+        {/* <FuncApp /> */}
       </div>
     );
   }
