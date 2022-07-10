@@ -1,326 +1,234 @@
 import "../styles/App.css";
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import General from "./general.js";
 import Work from "./Work";
 import Info from "./Info";
 import Inputs from "./input-components/Inputs";
-import FuncApp from "./functionalComp";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+const App = () => {
+  const [general, setGeneral] = useState({
+    name: "",
+    overview: "",
+    email: "",
+    cell: "",
+    city: "",
+    state: "",
+    gitHub: "",
+    linkedIn: "",
+    website: "",
+  });
 
-    this.state = {
-      general: {
-        name: "",
-        overview: "",
-        email: "",
-        cell: "",
-        city: "",
-        state: "",
-        gitHub: "",
-        linkedIn: "",
-        website: "",
-      },
-      skills: {
-        skill1: "",
-        skill2: "",
-        skill3: "",
-        skill4: "",
-        skill5: "",
-        skill6: "",
-        skill7: "",
-        skill8: "",
-      },
-      experience: [
-        {
-          jobTitle: "",
-          company: "",
-          years: "",
-          location: "",
-          ex1: "",
-          ex2: "",
-          ex3: "",
-          ex4: "",
-          ex5: "",
-        },
-      ],
-      education: [
-        {
-          type: "",
-          institute: "",
-          years: "",
-        },
-      ],
-    };
-    this.changeGeneral = this.changeGeneral.bind(this);
-    this.educationChange = this.educationChange.bind(this);
-    this.changeExperience = this.changeExperience.bind(this);
-    this.addEducation = this.addEducation.bind(this);
-    this.addExperience = this.addExperience.bind(this);
-    this.deleteEducation = this.deleteEducation.bind(this);
-    this.deleteExperience = this.deleteExperience.bind(this);
-    this.changeSkills = this.changeSkills.bind(this);
-    this.showExperience = this.showExperience.bind(this);
-    this.checkInfo = this.checkInfo.bind(this);
-  }
+  const [skills, setSkills] = useState({
+    skill1: "",
+    skill2: "",
+    skill3: "",
+    skill4: "",
+    skill5: "",
+    skill6: "",
+    skill7: "",
+    skill8: "",
+  });
 
-  changeGeneral = (type, value) => {
-    this.setState(
-      (previousData) => {
-        const { general } = previousData;
-        general[type] = value;
+  const [experience, setExperience] = useState([
+    {
+      jobTitle: "",
+      company: "",
+      years: "",
+      location: "",
+      ex1: "",
+      ex2: "",
+      ex3: "",
+      ex4: "",
+      ex5: "",
+    },
+  ]);
 
-        return {
-          ...previousData,
-          general,
-        };
-      },
-      () => {
-        this.checkInfo(type);
-      }
-    );
+  const [education, setEducation] = useState([
+    {
+      type: "",
+      institute: "",
+      years: "",
+    },
+  ]);
+
+  const changeGeneral = (type, value) => {
+    setGeneral({ ...general, [type]: value });
   };
 
-  checkInfo(type) {
-    this.showWeb();
+  useEffect(() => {
+    checkInfo();
+  }, [general]);
 
-    if (
-      this.state.general.cell.length === 10 ||
-      this.state.general.cell.length === 11
-    ) {
-      let num = this.state.general.cell.length;
-      this.formatCell(num, type);
+  const checkInfo = () => {
+    showWeb();
+
+    if (general.cell.length === 10 || general.cell.length === 11) {
+      let num = general.cell.length;
+      formatCell(num);
     }
-  }
+  };
 
-  showWeb() {
+  const showWeb = () => {
     let webDiv = document.querySelector("#webDiv");
     if (webDiv.textContent === "" || webDiv.textContent === "Website") {
       webDiv.classList.add("hide");
     } else {
       webDiv.classList.remove("hide");
     }
-  }
+  };
 
-  formatCell(num, type) {
+  const formatCell = (num) => {
     if (num === 10) {
-      var cleaned = ("" + this.state.general.cell).replace(/\D/g, "");
+      var cleaned = ("" + general.cell).replace(/\D/g, "");
       var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
       if (match) {
         let newNum = "(" + match[1] + ") " + match[2] + "-" + match[3];
-        this.setState((previousData) => {
-          const { general } = previousData;
-          general[type] = newNum;
-
-          return {
-            ...previousData,
-            general,
-          };
-        });
+        changeGeneral("cell", newNum);
       }
     }
-  }
+  };
 
-  changeSkills(type, value) {
-    this.setState(
-      (previousData) => {
-        const { skills } = previousData;
-        skills[type] = value;
+  const changeSkills = (type, value) => {
+    setSkills({ ...skills, [type]: value });
+  };
 
-        return {
-          ...previousData,
-          skills,
-        };
+  useEffect(() => {
+    checkCounts();
+  }, [skills]);
+
+  const checkCounts = (item) => {
+    const skillsArray = [
+      "skill1",
+      "skill2",
+      "skill3",
+      "skill4",
+      "skill5",
+      "skill6",
+      "skill7",
+      "skill8",
+    ];
+    for (const item of skillsArray) {
+      let skillItem = document.querySelector(`#${item}-Info`);
+
+      if (skillItem.textContent !== "") {
+        skillItem.classList.add("skillShow");
+      } else {
+        skillItem.classList.remove("skillShow");
+      }
+    }
+  };
+
+  const changeEducation = (type, value, index) => {
+    let items = [...education];
+    let item = items[index];
+    item[type] = value;
+    items[item] = item;
+
+    setEducation(items);
+  };
+
+  const addEducation = () => {
+    setEducation([
+      ...education,
+      {
+        type: "",
+        institute: "",
+        years: "",
       },
-      () => {
-        this.checkCounts(type);
-      }
-    );
-  }
+    ]);
+  };
 
-  checkCounts(item) {
-    let skillItem = document.querySelector(`#${item}-Info`);
+  const deleteEducation = (index) => {
+    if (education.length !== 1) {
+      const deleteArray = education.filter((item, i) => i !== index);
 
-    if (skillItem.textContent !== "") {
-      skillItem.classList.add("skillShow");
-    } else {
-      skillItem.classList.remove("skillShow");
+      setEducation(deleteArray);
     }
-  }
+  };
 
-  educationChange(type, value, index) {
-    this.setState((previousEducationData) => {
-      const { education } = previousEducationData;
-      education[index][type] = value;
-
-      return {
-        ...previousEducationData,
-        education,
-      };
-    });
-  }
-
-  addEducation() {
-    this.setState((previousEducationData) => {
-      const { education } = previousEducationData;
-
-      return {
-        ...previousEducationData,
-        education: [
-          ...education,
-          {
-            type: "",
-            institute: "",
-            years: "",
-          },
-        ],
-      };
-    });
-  }
-
-  deleteEducation(index) {
-    if (this.state.education.length !== 1) {
-      this.setState((previousEducationData) => {
-        const { education } = previousEducationData;
-
-        return {
-          ...previousEducationData,
-          education: education.filter((item, i) => i !== index),
-        };
-      });
-    }
-  }
-
-  addExperience(e) {
-    this.setState((previousExpData) => {
-      const { experience } = previousExpData;
-
-      return {
-        ...previousExpData,
-        experience: [
-          ...experience,
-          {
-            jobTitle: "",
-            company: "",
-            years: "",
-            location: "",
-            ex1: "",
-            ex2: "",
-            ex3: "",
-            ex4: "",
-            ex5: "",
-          },
-        ],
-      };
-    });
-  }
-
-  changeExperience(type, value, index) {
-    this.setState(
-      (previousExpData) => {
-        const { experience } = previousExpData;
-        experience[index][type] = value;
-
-        return {
-          ...previousExpData,
-          experience,
-        };
+  const addExperience = () => {
+    setExperience([
+      ...experience,
+      {
+        jobTitle: "",
+        company: "",
+        years: "",
+        location: "",
+        ex1: "",
+        ex2: "",
+        ex3: "",
+        ex4: "",
+        ex5: "",
       },
-      () => {
-        if (
-          type === "ex1" ||
-          type === "ex2" ||
-          type === "ex3" ||
-          type === "ex4" ||
-          type === "ex5"
-        )
-          this.showExperience(type, index);
+    ]);
+  };
+
+  const changeExperience = (type, value, index) => {
+    let items = [...experience];
+    let item = items[index];
+    item[type] = value;
+    items[item] = item;
+
+    setExperience(items);
+  };
+
+  useEffect(() => {
+    showExperience();
+  }, [experience]);
+
+  const deleteExperience = (index) => {
+    if (experience.length !== 1) {
+      const deleteArray = experience.filter((item, i) => i !== index);
+      setExperience(deleteArray);
+    }
+  };
+
+  const showExperience = () => {
+    const typeArray = ["ex1", "ex2", "ex3", "ex4", "ex5"];
+
+    for (let i = 0; i < experience.length; i++) {
+      for (let j = 0; j < typeArray.length; j++) {
+        let type = typeArray[j];
+        if (experience[i][type] !== "") {
+          let item = document.querySelector(`#${type}-${i}`);
+          item.classList.remove("hide");
+        } else {
+          let item = document.querySelector(`#${type}-${i}`);
+          item.classList.add("hide");
+        }
       }
-    );
-  }
-
-  showExperience(type, index) {
-    if (this.state.experience[index][type] !== "") {
-      let item = document.querySelector(`#${type}-${index}`);
-      item.classList.remove("hide");
-    } else {
-      let item = document.querySelector(`#${type}-${index}`);
-      item.classList.add("hide");
     }
+  };
 
-    if (
-      this.state.experience[index].ex1 !== "" &&
-      this.state.experience[index].ex2 !== "" &&
-      this.state.experience[index].ex3 !== ""
-    ) {
-      let item = document.querySelector(`#ex4-input${index}`);
-      item.classList.remove("hide");
-    } else {
-      let item = document.querySelector(`#ex4-input${index}`);
-      item.classList.add("hide");
-    }
-
-    if (
-      this.state.experience[index].ex1 !== "" &&
-      this.state.experience[index].ex2 !== "" &&
-      this.state.experience[index].ex3 !== "" &&
-      this.state.experience[index].ex4 !== ""
-    ) {
-      let item = document.querySelector(`#ex5-input${index}`);
-      item.classList.remove("hide");
-    } else {
-      let item = document.querySelector(`#ex5-input${index}`);
-      item.classList.add("hide");
-    }
-  }
-
-  deleteExperience(index) {
-    if (this.state.experience.length !== 1) {
-      this.setState((previousExpData) => {
-        const { experience } = previousExpData;
-
-        return {
-          ...previousExpData,
-          experience: experience.filter((item, i) => i !== index),
-        };
-      });
-    }
-  }
-
-  render() {
-    return (
-      <div id="main">
-        <h1 id="mainTitle">Resume Builder</h1>
-        <div id="inputSection">
-          <Inputs
-            changeGeneral={this.changeGeneral}
-            educationChange={this.educationChange}
-            changeExperience={this.changeExperience}
-            addEducation={this.addEducation}
-            addExperience={this.addExperience}
-            deleteEducation={this.deleteEducation}
-            deleteExperience={this.deleteExperience}
-            dataGeneral={this.state.general}
-            dataContact={this.state.contact}
-            dataSkills={this.state.skills}
-            education={this.state.education}
-            experience={this.state.experience}
-            skills={this.state.skills}
-            changeSkills={this.changeSkills}
-          />
-        </div>
-        <div id="template">
-          <General dataGeneral={this.state.general} />
-          <div id="bottomSection">
-            <Work experience={this.state.experience} />
-            <Info education={this.state.education} skills={this.state.skills} />
-          </div>
-        </div>
-        {/* <FuncApp /> */}
+  return (
+    <div id="main">
+      <h1 id="mainTitle">Resume Builder</h1>
+      <div id="inputSection">
+        <Inputs
+          changeGeneral={changeGeneral}
+          educationChange={changeEducation}
+          changeExperience={changeExperience}
+          addEducation={addEducation}
+          addExperience={addExperience}
+          deleteEducation={deleteEducation}
+          deleteExperience={deleteExperience}
+          dataGeneral={general}
+          dataSkills={skills}
+          education={education}
+          experience={experience}
+          skills={skills}
+          changeSkills={changeSkills}
+        />
       </div>
-    );
-  }
-}
+      <div id="template">
+        <General dataGeneral={general} />
+        <div id="bottomSection">
+          <Work experience={experience} />
+          <Info education={education} skills={skills} />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

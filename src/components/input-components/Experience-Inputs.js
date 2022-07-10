@@ -86,7 +86,6 @@ const ExperienceInputs = (props) => {
           value={props.data.ex4}
           cols="15"
           rows="3"
-          class="hide"
           id={"ex4-input" + props.dataIndex}
           onChange={(e) => {
             props.changeExperience("ex4", e.target.value, props.dataIndex);
@@ -99,7 +98,6 @@ const ExperienceInputs = (props) => {
           value={props.data.ex5}
           cols="15"
           rows="3"
-          class="hide"
           id={"ex5-input" + props.dataIndex}
           onChange={(e) => {
             props.changeExperience("ex5", e.target.value, props.dataIndex);
