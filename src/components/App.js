@@ -6,53 +6,62 @@ import Info from "./Info";
 import Inputs from "./input-components/Inputs";
 
 const App = () => {
-  const [general, setGeneral] = useState({
-    name: "",
-    overview: "",
-    email: "",
-    cell: "",
-    city: "",
-    state: "",
-    gitHub: "",
-    linkedIn: "",
-    website: "",
+  const [general, setGeneral] = useState(() => {
+    return {
+      name: localStorage.getItem("name") || "",
+      overview: localStorage.getItem("overview") || "",
+      email: localStorage.getItem("email") || "",
+      cell: localStorage.getItem("cell") || "",
+      city: localStorage.getItem("city") || "",
+      state: localStorage.getItem("state") || "",
+      gitHub: localStorage.getItem("gitHub") || "",
+      linkedIn: localStorage.getItem("linkedIn") || "",
+      website: localStorage.getItem("website") || "",
+    };
   });
 
-  const [skills, setSkills] = useState({
-    skill1: "",
-    skill2: "",
-    skill3: "",
-    skill4: "",
-    skill5: "",
-    skill6: "",
-    skill7: "",
-    skill8: "",
+  const [skills, setSkills] = useState(() => {
+    return {
+      skill1: localStorage.getItem("skill1") || "",
+      skill2: localStorage.getItem("skill2") || "",
+      skill3: localStorage.getItem("skill3") || "",
+      skill4: localStorage.getItem("skill4") || "",
+      skill5: localStorage.getItem("skill5") || "",
+      skill6: localStorage.getItem("skill6") || "",
+      skill7: localStorage.getItem("skill7") || "",
+      skill8: localStorage.getItem("skill8") || "",
+    };
   });
 
-  const [experience, setExperience] = useState([
-    {
-      jobTitle: "",
-      company: "",
-      years: "",
-      location: "",
-      ex1: "",
-      ex2: "",
-      ex3: "",
-      ex4: "",
-      ex5: "",
-    },
-  ]);
+  const [experience, setExperience] = useState(() => {
+    return [
+      {
+        jobTitle: localStorage.getItem("jobTitle0") || "",
+        company: localStorage.getItem("company0") || "",
+        years: localStorage.getItem("years0") || "",
+        location: localStorage.getItem("location0") || "",
+        ex1: localStorage.getItem("ex10") || "",
+        ex2: localStorage.getItem("ex20") || "",
+        ex3: localStorage.getItem("ex30") || "",
+        ex4: localStorage.getItem("ex40") || "",
+        ex5: localStorage.getItem("ex50") || "",
+      },
+    ];
+  });
 
-  const [education, setEducation] = useState([
-    {
-      type: "",
-      institute: "",
-      years: "",
-    },
-  ]);
+  const [education, setEducation] = useState(() => {
+    return [
+      {
+        type: localStorage.getItem("type-0") || "",
+        institute: localStorage.getItem("institute-0") || "",
+        years: localStorage.getItem("years-0") || "",
+      },
+    ];
+  });
 
   const changeGeneral = (type, value) => {
     setGeneral({ ...general, [type]: value });
+    localStorage.setItem(type, value);
   };
 
   useEffect(() => {
@@ -90,6 +99,7 @@ const App = () => {
 
   const changeSkills = (type, value) => {
     setSkills({ ...skills, [type]: value });
+    localStorage.setItem(type, value);
   };
 
   useEffect(() => {
@@ -124,16 +134,19 @@ const App = () => {
     item[type] = value;
     items[item] = item;
 
+    localStorage.setItem(type + "-" + index, value);
+
     setEducation(items);
   };
 
   const addEducation = () => {
+    let num = education.length;
     setEducation([
       ...education,
       {
-        type: "",
-        institute: "",
-        years: "",
+        type: localStorage.getItem("type-" + num) || "",
+        institute: localStorage.getItem("institute-" + num) || "",
+        years: localStorage.getItem("years-" + num) || "",
       },
     ]);
   };
@@ -147,18 +160,19 @@ const App = () => {
   };
 
   const addExperience = () => {
+    let num = experience.length;
     setExperience([
       ...experience,
       {
-        jobTitle: "",
-        company: "",
-        years: "",
-        location: "",
-        ex1: "",
-        ex2: "",
-        ex3: "",
-        ex4: "",
-        ex5: "",
+        jobTitle: localStorage.getItem("jobTitle" + num) || "",
+        company: localStorage.getItem("company" + num) || "",
+        years: localStorage.getItem("years" + num) || "",
+        location: localStorage.getItem("location" + num) || "",
+        ex1: localStorage.getItem("ex1" + num) || "",
+        ex2: localStorage.getItem("ex2" + num) || "",
+        ex3: localStorage.getItem("ex3" + num) || "",
+        ex4: localStorage.getItem("ex4" + num) || "",
+        ex5: localStorage.getItem("ex5" + num) || "",
       },
     ]);
   };
@@ -168,6 +182,8 @@ const App = () => {
     let item = items[index];
     item[type] = value;
     items[item] = item;
+
+    localStorage.setItem(type + index, value);
 
     setExperience(items);
   };
